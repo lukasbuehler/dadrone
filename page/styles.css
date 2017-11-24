@@ -1,0 +1,31 @@
+
+body {
+    text-align: center;
+    font-family: Verdana;
+    color: #111111;
+}
+
+.modes-menu {
+    width: 100%;
+}
+
+.actions-menu 
+{
+    width: 100%;
+}
+
+.actions-menu div
+{
+    width: 100%;
+}
+
+.actions-menu .acro
+{
+    display: none;
+}
+
+.actions-menu div div 
+{
+    width: 50px;
+    height: 50px;
+}
