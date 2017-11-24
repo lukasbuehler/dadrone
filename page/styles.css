@@ -17,6 +17,7 @@ body {
 .actions-menu div
 {
     width: 100%;
+    margin-top: 10px;
 }
 
 .actions-menu .acro
@@ -24,14 +25,25 @@ body {
     display: none;
 }
 
-.actions-menu div div 
+.actions-menu div a 
 {
     width: 50px;
     height: 50px;
+    font-size: 25px;
+    margin: 5px;
+}
+
+.drone-disp 
+{
+    margin-top: 20px;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .main-drone-img 
 {
+    margin-top: 20px;
     width: 50vw;
     max-width: 600px;
 }
@@ -40,10 +52,21 @@ body {
 {
     perspective: 500px;
     max-width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.front-camera
+{
+    max-width: 1280px;
+    max-height: 720px;
+    width: 50vw;
 }
 
 .bottom-camera-img 
 {
     transform: rotateX(45deg);
-    max-width: 100%;
+    max-width: 320px;
+    max-height: 240px;
+    width: 50vw;
 }
