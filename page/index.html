@@ -5,54 +5,55 @@
     <title>Dadrone</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
+    <div class="header">
+        <h1>Dadrone</h1>
 
-    <h1>Dadrone</h1>
-
-    <table class="modes-menu">
-        <tr>
-            <td>
-                <i class="fa fa-plane" aria-hidden="true"></i> Normal 
-            </td>
-            <td>
-                <i class="fa fa-paper-plane"></i> Acro
-            </td>
-            <td>
-                <i class="fa fa-eye"></i> Watchdog
-            </td>
-            <td>
-                <i class="fa fa-fighter-jet"></i> Recon
-            </td>
-        </tr>
-    </table>
-    <div class="actions-menu">
-        <div class="norm">
-            <!-- Action buttons -->
-            <a class="btn btn-default" aria-label="Takeoff" title="Takeoff">
-                <i class="fa fa-arrow-up" aria-hidden="true"></i>
-            </a>
-            <a class="btn btn-default" aria-label="Takeoff" title="Land">
-                <i class="fa fa-arrow-down" aria-hidden="true"></i>
-            </a>
+        <div class="btn-group modes-menu">
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-plane" aria-hidden="true"></i><span class="hidden-xs"> Normal</span></button>
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-paper-plane"></i><span class="hidden-xs"> Acro</span></button>
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-eye"></i><span class="hidden-xs"> Watchdog</span></button>
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-fighter-jet"></i><span class="hidden-xs"> Recon</span></button>
         </div>
-        <div class="acro">
-            <div></div>
+
+        <div class="actions-menu">
+            <div class="norm">
+                <!-- Action buttons -->
+                <a class="btn btn-default" aria-label="Takeoff" title="Takeoff">
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-default" aria-label="Takeoff" title="Land">
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="acro">
+                <div></div>
+            </div>
         </div>
     </div>
     <div class="drone-disp">
-        <img class="front-camera" src="images/no_camera_signal_720p.gif">
+        <div class="front-camera-wrapper">
+            <img class="front-camera" src="images/no_camera_signal_720p.gif">
+        </div>
+        
         <img class="main-drone-img" src="images/parrot_ar_2.0_sand_drone_front-up.png">
         <div class="bottom-camera-parent">
             <img class="bottom-camera bottom-camera-img" src="images/no_camera_signal.gif">
         </div>
     </div>
-    
+
 
 
 </body>
