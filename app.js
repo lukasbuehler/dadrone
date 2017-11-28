@@ -6,9 +6,6 @@ var app = express();
 var arDrone = require("ar-drone");
 var drone = arDrone.createClient();
 
-// For base64 image conversion
-var btoa = require('btoa');
-
 // Create the web server
 app.use(express.static(__dirname + '/page')); // Uses the HTML files from the page directory
 
@@ -33,28 +30,22 @@ app.get(/\/drone\/\w+$/, function (req, res) {
 });
 
 // images
+var pngStream = drone.getPngStream();
+var pngBuffer = null;
 
-app.get('/cameras/front/png', function (req, res) 
-{
-    var pngStream = drone.getPngStream();
-    res.setHeader('Content-Type', 'Buffer');
-
-    pngStream
-    .on('data', function (buffer) 
-    {
-        //res.setHeader("Content-length", buffer.length);
-        //res.write('--hodor--\n');
-        res.write(buffer);
-        res.flush();
-    })
-    .on('error', function() {
-        res.end();
+pngStream
+    .on('error', console.log)
+    .on('data', function (buffer) {
+        pngBuffer = buffer;
     });
-   
+
+app.get('/cameras/front/png', function (req, res) {
+    while(pngBuffer === null)
+    {
+        // waiting
+    }
+    res.send(pngBuffer); // displays the main page
 });
-
-
-
 
 
 // The funcitons

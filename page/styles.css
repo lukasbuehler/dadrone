@@ -101,3 +101,7 @@ html, body
     max-height: 100%;
     max-width: 100%;
 }
+
+.drone-img {
+    border-radius: 7px;
+}
