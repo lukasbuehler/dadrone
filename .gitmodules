@@ -1,0 +1,3 @@
+[submodule "ardrone-wpa2"]
+	path = ardrone-wpa2
+	url = https://github.com/daraosn/ardrone-wpa2.git
