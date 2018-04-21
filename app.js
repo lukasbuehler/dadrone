@@ -2,9 +2,11 @@
 var express = require('express');
 var app = express();
 
+var ip = "192.168.1.153";
+
 // Node AR-Drone for drone control
 var arDrone = require("ar-drone");
-var drone = arDrone.createClient();
+var drone = arDrone.createClient({ip: ip});
 
 // Create the web server
 app.use(express.static(__dirname + '/page')); // Uses the HTML files from the page directory
