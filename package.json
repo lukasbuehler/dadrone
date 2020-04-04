@@ -1,0 +1,21 @@
+{
+  "name": "dadrone",
+  "version": "1.0.0",
+  "description": "Make a drone do stuff",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukasbuehler/dadrone.git"
+  },
+  "author": "Lukas Bühler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lukasbuehler/dadrone/issues"
+  },
+  "homepage": "https://github.com/lukasbuehler/dadrone#readme"
+}
