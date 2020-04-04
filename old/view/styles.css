@@ -1,0 +1,50 @@
+@font-face {
+    font-family: Hacked;
+    src: url(https://hackedfont.com/HACKED.ttf);
+}
+
+@font-face {
+    font-family: PixelOperatorBold;
+    src: url(https://watchdogsfont.com/font/PixelOperatorMono-Bold.ttf);
+}
+
+.hacked {
+    font-family: Hacked !important;
+}
+.pixelop {
+    font-family: PixelOperatorBold !important;
+}
+
+#app {
+    height: 100vh;
+}
+
+.action-buttons {
+    font-family: PixelOperatorBold;
+    font-size: 36pt;
+    max-width: 959px; /* the max small view size */
+    margin: 0 auto;
+}
+.action-buttons > div.button-container {
+    padding: 5px;
+}
+.action-buttons > div.button-container > button {
+    font-size: 0.4em;
+    padding: 50%;
+    height: 0px;
+    width: 0px;
+    margin: 0px;
+}
+.action-buttons > div.button-container > button > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#drone-disp-img {
+    max-width: 1280px;
+    max-height: 720px;
+    width: 100%;
+    height: auto;
+    background-color: black;
+}
