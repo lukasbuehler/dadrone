@@ -18,7 +18,7 @@
 <script>
 export default {
   name: "ActionButtons",
-  components: {}
+  components: {},
 };
 </script>
 
@@ -33,7 +33,7 @@ export default {
   padding: 5px;
 }
 .action-buttons > div.button-container > button {
-  font-size: 0.4em;
+  font-size: 0.5em;
   padding: 50%;
   height: 0px;
   width: 0px;

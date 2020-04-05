@@ -21,6 +21,7 @@
   "dependencies": {
     "ar-drone": "^0.3.3",
     "btoa": "^1.1.2",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "path": "^0.12.7"
   }
 }
