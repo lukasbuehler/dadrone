@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/lukasbuehler/dadrone/issues"
   },
-  "homepage": "https://github.com/lukasbuehler/dadrone#readme"
+  "homepage": "https://github.com/lukasbuehler/dadrone#readme",
+  "dependencies": {
+    "ar-drone": "^0.3.3",
+    "btoa": "^1.1.2",
+    "express": "^4.16.2"
+  }
 }
