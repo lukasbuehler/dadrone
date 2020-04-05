@@ -47,3 +47,7 @@ exports.droneCommands = {
     },
   },
 };
+
+exports.getTcpVideoStream = () => {
+  return droneClient.getVideoStream();
+};

@@ -9,12 +9,13 @@ import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default-dark.css";
 
 // Vue Material Components
-import { MdApp, MdToolbar, MdContent, MdButton } from "vue-material/dist/components";
+import { MdApp, MdToolbar, MdContent, MdButton, MdDialog } from "vue-material/dist/components/";
 
 Vue.use(MdApp);
 Vue.use(MdToolbar);
 Vue.use(MdContent);
 Vue.use(MdButton);
+Vue.use(MdDialog);
 
 Vue.config.productionTip = false;
 

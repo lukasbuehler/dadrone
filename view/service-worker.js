@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.1e7fddb193e73ff8607c9d09504dc9cf.js"
+  "/precache-manifest.f45c4abf685fbdf57f6878256d36aa50.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "dadrone-web-frontend"});

@@ -5,16 +5,25 @@ all: install start
 .PHONY: install
 install: ./view/index.html ./node_modules/ar-drone server.js
 
+.PHONY: build
+build: clean-view clean-dist install
+
 .PHONY: start
 start: install
 	npm run start
 
 .PHONY: clean
-clean: 
+clean: clean-view clean-dist
 	rm -r ./node_modules
-	rm -r ./view/*
-	rm -r ./frontend/dadrone-web-frontend/dist
 	rm -r ./frontend/dadrone-web-frontend/node_modules
+
+.PHONY: clean-view
+clean-view: 
+	rm -r ./view/*
+
+.PHONY: clean-dist
+clean-dist: 
+	rm -r ./frontend/dadrone-web-frontend/dist
 
 ./node_modules/ar-drone: 
 	npm i
