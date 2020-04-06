@@ -32,17 +32,21 @@ export default {
         isInTheAir: false,
         isMoving: false,
       },
+      batteryIntervall: null,
     };
   },
   mounted() {
-    axios
-      .get("/drone/battery")
-      .then((response) => {
-        this.drone.battery = response;
-      })
-      .catch((reason) => {
-        console.error(reason);
-      });
+    this.batteryIntervall = setInterval(() => {
+      console.log("Getting battery");
+      axios
+        .get("/drone/battery")
+        .then((response) => {
+          this.drone.battery = response.data;
+        })
+        .catch((reason) => {
+          console.error(reason);
+        });
+    }, 10000);
   },
 };
 </script>

@@ -45,7 +45,7 @@ exports.serveDroneAPI = () => {
       if (droneController.isConnected()) {
         // Calls the requested function
         var funcText = droneCommands[command].call();
-        res.send(funcText);
+        res.send(String(funcText));
       } else {
         res.status(400);
         res.send("The drone is not connected!");

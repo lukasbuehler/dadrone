@@ -19,11 +19,11 @@ clean: clean-view clean-dist
 
 .PHONY: clean-view
 clean-view: 
-	rm -r ./view/*
+	rm -rf ./view/*
 
 .PHONY: clean-dist
 clean-dist: 
-	rm -r ./frontend/dadrone-web-frontend/dist
+	rm -rf ./frontend/dadrone-web-frontend/dist
 
 ./node_modules/ar-drone: 
 	npm i

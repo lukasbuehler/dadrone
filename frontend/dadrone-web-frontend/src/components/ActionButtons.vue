@@ -7,7 +7,7 @@
       <div v-if="drone.isInTheAir" class="button-container md-layout-item md-medium-size-25 md-small-size-33">
         <md-button v-on:click="land" class="md-raised" :disabled="!drone.isOnline">Land</md-button>
       </div>
-      <div class="button-container md-layout-item md-medium-size-25 md-small-size-33 md-small-hide">
+      <div class="button-container md-layout-item md-medium-size-25 md-small-size-33">
         <md-button
           v-on:click="stop"
           class="md-raised"
