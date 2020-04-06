@@ -86,6 +86,7 @@ exports.serveTcpStream = () => {
 
   var wsServer = new WebSocketServer({
     httpServer: server,
+    path: "/drone",
     autoAcceptConnections: false,
   });
 
@@ -102,7 +103,7 @@ exports.serveTcpStream = () => {
     wsClients.push(connection);
 
     connection.on("close", function (reasonCode, description) {
-      console.log(new Date() + " Peer " + connection.remoteAddress + "disconnected");
+      console.log(new Date() + " Peer " + connection.remoteAddress + " disconnected");
       wsClients.splice(wsClients.indexOf(connection), 1); // remove from array
     });
   });
@@ -113,5 +114,5 @@ exports.serveTcpStream = () => {
  */
 exports.start = (port) => {
   const _port = port || 3000;
-  server.listen(_port, () => console.log(`dadrone is online at http://localhost:${_port}`));
+  server.listen(_port, () => console.log(`dadrone server is online at http://localhost:${_port}`));
 };

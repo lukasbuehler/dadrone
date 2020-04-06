@@ -1,19 +1,22 @@
 <template>
   <div>
     <div class="action-buttons md-layout md-alignment-top-center">
-      <div class="button-container md-layout-item md-medium-size-25 md-small-size-33">
-        <md-button v-on:click="takeoff" class="md-raised md-primary" :disabled="drone.isInTheAir">Takeoff</md-button>
+      <div v-if="!drone.isInTheAir" class="button-container md-layout-item md-medium-size-25 md-small-size-33">
+        <md-button v-on:click="takeoff" class="md-raised md-primary" :disabled="!drone.isOnline">Takeoff</md-button>
       </div>
-      <div class="button-container md-layout-item md-medium-size-25 md-small-size-33">
-        <md-button v-on:click="land" class="md-raised" :disabled="!drone.isInTheAir">Land</md-button>
+      <div v-if="drone.isInTheAir" class="button-container md-layout-item md-medium-size-25 md-small-size-33">
+        <md-button v-on:click="land" class="md-raised" :disabled="!drone.isOnline">Land</md-button>
       </div>
       <div class="button-container md-layout-item md-medium-size-25 md-small-size-33 md-small-hide">
-        <md-button v-on:click="stop" class="md-raised" :disabled="!(drone.isInTheAir && drone.isMoving)"
+        <md-button
+          v-on:click="stop"
+          class="md-raised"
+          :disabled="!drone.isOnline || !(drone.isInTheAir && drone.isMoving)"
           >Stop</md-button
         >
       </div>
       <div class="button-container md-layout-item md-medium-size-25 md-small-size-33">
-        <md-button v-on:click="askKill" class="md-raised md-accent">Kill</md-button>
+        <md-button v-on:click="askKill" class="md-raised md-accent" :disabled="!drone.isOnline">Kill</md-button>
       </div>
     </div>
     <div>
@@ -36,37 +39,65 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "ActionButtons",
   components: {},
+  props: ["drone"],
   methods: {
     takeoff: function() {
-      console.log("Takeoff");
-      this.drone.isInTheAir = true;
+      axios
+        .get("/drone/takeoff")
+        .then((response) => {
+          console.log(response);
+          this.drone.isInTheAir = true;
+        })
+        .catch((reason) => {
+          console.error(reason);
+        });
     },
     land: function() {
-      console.log("Land");
-      this.drone.isInTheAir = false;
+      axios
+        .get("/drone/land")
+        .then((response) => {
+          console.log(response);
+          this.drone.isInTheAir = false;
+        })
+        .catch((reason) => {
+          console.error(reason);
+        });
     },
     stop: function() {
-      console.log("Stop");
+      axios
+        .get("/drone/stop")
+        .then((response) => {
+          console.log(response);
+          this.drone.isMoving = false;
+        })
+        .catch((reason) => {
+          console.error(reason);
+        });
     },
     askKill: function() {
       this.askKillDialogActive = true;
     },
     onKillConfirm() {
       this.askKillDialogActive = false;
-      console.log("Kill");
-      this.drone.isInTheAir = false;
-      this.drone.isMoving = false;
+      axios
+        .get("/drone/kill")
+        .then((response) => {
+          console.log(response);
+          this.drone.isInTheAir = false;
+          this.drone.isMoving = false;
+        })
+        .catch((reason) => {
+          console.error(reason);
+        });
     },
   },
   data() {
     return {
-      drone: {
-        isInTheAir: false,
-        isMoving: false,
-      },
       askKillDialogActive: false,
     };
   },

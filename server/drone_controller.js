@@ -1,5 +1,6 @@
 // Node AR-Drone for drone control
 var arDrone = require("ar-drone");
+const execSync = require("child_process").execSync;
 
 const defaultIP = "192.168.1.1";
 
@@ -37,17 +38,37 @@ exports.droneCommands = {
   stop: {
     description: "Let's the drone stop its movement and hover at its current location",
     call: function () {
+      droneClient.stop();
       return "Holding still!";
     },
   },
   kill: {
     description: "Kills the motors. If it is in the air, the drone will fall out of the sky!",
     call: function () {
+      _rebootDrone();
       return "DEAD!";
+    },
+  },
+  battery: {
+    description: "Returns the battery percentage of the drone.",
+    call: function () {
+      return droneClient.battery();
     },
   },
 };
 
 exports.getTcpVideoStream = () => {
   return droneClient.getVideoStream();
+};
+
+exports.getBattery = () => {
+  return droneClient.battery();
+};
+
+/**
+ * Dangerous! Let's the drone reboot and fall out of the sky!
+ * @param _ip
+ */
+const _rebootDrone = (_ip) => {
+  execSync('{ echo "reboot"; sleep 1 } | telnet ' + (_ip || defaultIP));
 };

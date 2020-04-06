@@ -5,8 +5,8 @@
         <span class="md-title hacked">DA_DRONE</span>
       </md-app-toolbar>
       <md-app-content>
-        <drone-output></drone-output>
-        <action-buttons></action-buttons>
+        <drone-output :drone="drone"></drone-output>
+        <action-buttons :drone="drone"></action-buttons>
       </md-app-content>
     </md-app>
   </div>
@@ -16,11 +16,33 @@
 import DroneOutput from "./components/DroneOutput";
 import ActionButtons from "./components/ActionButtons";
 
+import axios from "axios";
+
 export default {
   name: "App",
   components: {
     DroneOutput,
     ActionButtons,
+  },
+  data() {
+    return {
+      drone: {
+        isOnline: true,
+        battery: 0,
+        isInTheAir: false,
+        isMoving: false,
+      },
+    };
+  },
+  mounted() {
+    axios
+      .get("/drone/battery")
+      .then((response) => {
+        this.drone.battery = response;
+      })
+      .catch((reason) => {
+        console.error(reason);
+      });
   },
 };
 </script>
@@ -28,12 +50,12 @@ export default {
 <style lang="scss">
 @font-face {
   font-family: Hacked;
-  src: url(https://hackedfont.com/HACKED.ttf);
+  src: url("/fonts/HACKED.ttf");
 }
 
 @font-face {
   font-family: PixelOperatorBold;
-  src: url(https://watchdogsfont.com/font/PixelOperatorMono-Bold.ttf);
+  src: url("/fonts/PixelOperatorMono-Bold.ttf");
 }
 
 .hacked {
