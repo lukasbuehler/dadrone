@@ -11,6 +11,8 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 
+const fs = require("fs");
+
 // drone commands to serve the API for
 const droneController = require("./drone_controller");
 const droneCommands = droneController.droneCommands;
@@ -71,13 +73,19 @@ var firstPacket = [];
 exports.serveTcpStream = () => {
   // get TcpVideoStream
   const tcpStream = droneController.getTcpVideoStream();
+  var writeStream = fs.createWriteStream("test_data.mp4");
 
   // handle TcpStream data
   tcpStream.on("data", function (data) {
     // save the first 3 packets to kick start new connections
-    if (firstPacket.length < 3) {
+    if (firstPacket.length < 2) {
       firstPacket.push(data);
+      console.log(data);
+      console.log(firstPacket);
     }
+
+    writeStream.write(data, "binary");
+
     // send the data to all the subscribed clients
     wsClients.forEach(function (client) {
       client.sendBytes(data);
@@ -94,9 +102,10 @@ exports.serveTcpStream = () => {
     var connection = request.accept("echo-protocol", request.origin);
     console.log(new Date() + " Connection accepted");
 
-    if (firstPacket.length > 0) {
+    if (firstPacket.length == 2) {
       firstPacket.forEach(function (packet) {
         connection.sendBytes(packet);
+        //console.log("would send first bytes now...");
       });
     }
 

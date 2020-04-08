@@ -28,10 +28,17 @@ export default {
   },
   methods: {
     initCameraStream: function() {
-      var codecString = 'video/mp4; codecs="avc1.42E01F"';
+      var codecString = "video/mp4"; //'video/mp4; codecs="avc1.42001F"';
+      /*
+        Codec explanation: H.264 video is avc1
+        Baseline profile is Hex: 42 = 66 (dec)
+        E0 ?
+        1F is the level and corresponds to 720p HD 
+      */
 
       var video = this.videoElement;
 
+      // set media source
       var mediaSource = new MediaSource();
       video.src = window.URL.createObjectURL(mediaSource);
 
@@ -48,11 +55,11 @@ export default {
         buffer = mediaSource.addSourceBuffer(codecString);
         buffer.mode = "sequence";
 
-        buffer.addEventListener("update", function() {
-          // Note: Have tried 'updateend'
-          //console.log("update");
-          _updateBuffer();
-        });
+        //buffer.addEventListener("update", function() {
+        // Note: Have tried 'updateend'
+        //console.log("update");
+        _updateBuffer();
+        //});
 
         buffer.addEventListener("updateend", function() {
           //console.log("updateend");
