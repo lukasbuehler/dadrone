@@ -57,10 +57,6 @@ exports.droneCommands = {
   },
 };
 
-exports.getTcpVideoStream = () => {
-  return droneClient.getVideoStream();
-};
-
 exports.getBattery = () => {
   return droneClient.battery();
 };

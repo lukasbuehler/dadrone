@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9115923386968faa7589",
-    "url": "/css/app.52198655.css"
+    "revision": "00da6e0d92817298b680",
+    "url": "/css/app.29644ab2.css"
   },
   {
-    "revision": "39a50c03953e45c61c96",
-    "url": "/css/chunk-vendors.e6272100.css"
+    "revision": "ad905a37290741316b2d",
+    "url": "/css/chunk-vendors.c953cbe6.css"
   },
   {
     "revision": "2f48abc8c45de9add264c5be432e878e",
@@ -24,20 +24,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/parrot_ar_2.0_sand_drone_front-up.png"
   },
   {
-    "revision": "b733f9a9b17046db4aa6159510a562af",
+    "revision": "4e1dd05edc69c8409b5692ff37a8156b",
     "url": "/index.html"
   },
   {
-    "revision": "9115923386968faa7589",
-    "url": "/js/app.db85b86d.js"
+    "revision": "00da6e0d92817298b680",
+    "url": "/js/app.602ee770.js"
   },
   {
-    "revision": "39a50c03953e45c61c96",
-    "url": "/js/chunk-vendors.96e58ab9.js"
+    "revision": "ad905a37290741316b2d",
+    "url": "/js/chunk-vendors.ecae13d0.js"
   },
   {
     "revision": "48dcd5c9c55c9045ed86a4e13fc7badf",
     "url": "/manifest.json"
+  },
+  {
+    "revision": "8da0914a57fc796cb7b3d12f279a2eee",
+    "url": "/plugins/nodecopter-client.js"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",

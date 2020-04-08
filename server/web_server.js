@@ -11,15 +11,12 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 
-const fs = require("fs");
-
 // drone commands to serve the API for
 const droneController = require("./drone_controller");
 const droneCommands = droneController.droneCommands;
 
 // Other imports
 const path = require("path");
-const WebSocketServer = require("websocket").server;
 
 /**
  * Serves the UI for the webserver
@@ -71,51 +68,7 @@ var wsClients = [];
 var firstPacket = [];
 
 exports.serveTcpStream = () => {
-  // get TcpVideoStream
-  const tcpStream = droneController.getTcpVideoStream();
-  var writeStream = fs.createWriteStream("test_data.mp4");
-
-  // handle TcpStream data
-  tcpStream.on("data", function (data) {
-    // save the first 3 packets to kick start new connections
-    if (firstPacket.length < 2) {
-      firstPacket.push(data);
-      console.log(data);
-      console.log(firstPacket);
-    }
-
-    writeStream.write(data, "binary");
-
-    // send the data to all the subscribed clients
-    wsClients.forEach(function (client) {
-      client.sendBytes(data);
-    });
-  });
-
-  var wsServer = new WebSocketServer({
-    httpServer: server,
-    path: "/drone",
-    autoAcceptConnections: false,
-  });
-
-  wsServer.on("request", function (request) {
-    var connection = request.accept("echo-protocol", request.origin);
-    console.log(new Date() + " Connection accepted");
-
-    if (firstPacket.length == 2) {
-      firstPacket.forEach(function (packet) {
-        connection.sendBytes(packet);
-        //console.log("would send first bytes now...");
-      });
-    }
-
-    wsClients.push(connection);
-
-    connection.on("close", function (reasonCode, description) {
-      console.log(new Date() + " Peer " + connection.remoteAddress + " disconnected");
-      wsClients.splice(wsClients.indexOf(connection), 1); // remove from array
-    });
-  });
+  require("dronestream").listen(server);
 };
 
 /**
