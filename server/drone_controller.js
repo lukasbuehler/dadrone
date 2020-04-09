@@ -6,6 +6,28 @@ const defaultIP = "192.168.1.1";
 
 var droneClient = null;
 
+var _droneMovement = {
+  forward: 0,
+  backward: 0,
+  left: 0,
+  right: 0,
+  up: 0,
+  down: 0,
+  rotL: 0,
+  rotR: 0,
+};
+
+const _movementCommands = {
+  forward: "front",
+  backward: "back",
+  left: "left",
+  right: "right",
+  up: "up",
+  down: "down",
+  rotL: "counterClockwise",
+  rotR: "clockwise",
+};
+
 /**
  * Tries to connect to the drone at a given IP
  */
@@ -59,6 +81,62 @@ exports.droneCommands = {
 
 exports.getBattery = () => {
   return droneClient.battery();
+};
+
+exports.moveDrone = (moveObj) => {
+  if (JSON.stringify(_droneMovement) === JSON.stringify(moveObj)) {
+    return;
+  }
+
+  // tidy up the movement object, exp: no moving left and right at the same time
+
+  const oppositeMovement = {
+    forward: "backward",
+    backward: "forward",
+    left: "right",
+    right: "left",
+    up: "down",
+    down: "up",
+    rotL: "rotR",
+    rotR: "rotL",
+  };
+
+  let newMovement = {};
+  Object.keys(_droneMovement).forEach((key) => {
+    if (moveObj[key] || moveObj[key] === 0) {
+      if (moveObj[key] !== _droneMovement[key]) {
+        //if (!(moveObj[key] === 0 && moveObj[oppositeMovement[key]] !== 0)) {
+        newMovement[key] = moveObj[key];
+        // }
+      }
+    }
+  });
+
+  const badCombos = [
+    ["forward", "backward"],
+    ["left", "right"],
+    ["up", "down"],
+    ["rotL", "rotR"],
+  ];
+  badCombos.forEach((combo) => {
+    if (typeof newMovement[combo[0]] === "number" && typeof newMovement[combo[1]] === "number") {
+      //console.log("ayy no");
+      newMovement[combo[0]] = 0;
+      delete newMovement[combo[1]];
+    }
+  });
+
+  // apply the movements
+  if (droneClient) {
+    Object.keys(newMovement).forEach((movementKey) => {
+      // execute the movement
+      console.log(`Moving: ${_movementCommands[movementKey]} with ${newMovement[movementKey]} speed`);
+      droneClient[_movementCommands[movementKey]](newMovement[movementKey]);
+      _droneMovement[movementKey] = newMovement[movementKey];
+    });
+
+    //console.log(_droneMovement);
+  }
 };
 
 /**

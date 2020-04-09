@@ -35,17 +35,22 @@ export default {
       batteryIntervall: null,
     };
   },
-  mounted() {
-    this.batteryIntervall = setInterval(() => {
-      console.log("Getting battery");
+  methods: {
+    getBattery: function() {
       axios
         .get("/drone/battery")
         .then((response) => {
           this.drone.battery = response.data;
         })
-        .catch((reason) => {
-          console.error(reason);
+        .catch(() => {
+          //console.error(reason);
         });
+    },
+  },
+  mounted() {
+    this.getBattery();
+    this.batteryIntervall = setInterval(() => {
+      this.getBattery();
     }, 10000);
   },
 };

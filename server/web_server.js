@@ -8,6 +8,7 @@
 // ExpressJS web server
 const express = require("express");
 const http = require("http");
+const bodyParser = require("body-parser");
 const app = express();
 const server = http.createServer(app);
 
@@ -36,6 +37,8 @@ exports.serveUI = () => {
  * Serves the API for drone controls via the WEB
  */
 exports.serveDroneAPI = () => {
+  app.use(bodyParser.json());
+
   // Drone control
   app.get(/^\/drone\/(\w+)\/?/, function (req, res) {
     var command = req.params[0]; // the captured function in the URL
@@ -57,10 +60,17 @@ exports.serveDroneAPI = () => {
   });
 
   // List commands
-  app.get(/^\/drone\/?/, function (req, res) {
+  app.get(/^\/drone(\/list)?\/?/, function (req, res) {
     //const descriptions = Object.keys(droneCommands).map((key) => droneCommands[key].description);
 
     res.send(droneCommands);
+  });
+
+  // move command
+  app.put(/^\/drone\/move\/?/, function (req, res) {
+    droneController.moveDrone(req.body);
+
+    res.send(req.body);
   });
 };
 

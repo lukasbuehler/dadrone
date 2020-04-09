@@ -20,6 +20,7 @@
   "homepage": "https://github.com/lukasbuehler/dadrone#readme",
   "dependencies": {
     "ar-drone": "^0.3.3",
+    "body-parser": "^1.19.0",
     "btoa": "^1.1.2",
     "dronestream": "^1.1.1",
     "express": "^4.16.2",
