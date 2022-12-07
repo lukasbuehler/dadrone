@@ -20,10 +20,10 @@
   "homepage": "https://github.com/lukasbuehler/dadrone#readme",
   "dependencies": {
     "ar-drone": "^0.3.3",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "btoa": "^1.1.2",
     "dronestream": "^1.1.1",
-    "express": "^4.16.2",
+    "express": "^4.18.2",
     "h264-live-stream-demo-server": "file:h264-live-player",
     "path": "^0.12.7",
     "websocket": "^1.0.31"
